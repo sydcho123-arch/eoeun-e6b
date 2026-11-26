@@ -9079,14 +9079,14 @@ skillTree=function(){var m=$('vgsk');if(!m){m=document.createElement('div');m.id
   if(ub)ub.onclick=function(){var uc=tUpCost(L),us=tUpStar(L);if(left<uc){CH.sfx('deny');X.toast('✨ 스킬 포인트가 부족해요 ('+uc+'개 필요 · 지금 '+left+'개)');return}if(ST().pt<us){CH.sfx('deny');X.toast('⭐ 별이 부족해요 (⭐'+us+' 필요)');return}
    X.ask('「'+b.nm+'」을(를) Lv.'+(L+1)+'로 강화할까요?','스킬 포인트 '+uc+'개와 ⭐ '+us+'개를 써요. (남은 포인트 '+left+' · 별 '+ST().pt+'개)','강화하기','취소',function(){if(tLv(id)!==L)return;X.spend(us,'🌳 '+b.nm+' Lv.'+(L+1)+' 강화');SKS()[id]=L+1;X.sv();CH.sfx('equip');draw();X.toast('⬆️ '+b.nm+' Lv.'+(L+1)+'!')})}}};
 
-/* 11-26 11:12 선생님: 초6 B반 송퇴촞 — 스킬 초기화 + 스킬 개방·강화에 쓴 별 돌려주기 (한 번만 · 스킬 포인트는 자동으로 돌아옴) */
+/* 11-26 11:12 선생님: 초6 B반 솧툌춋 — 스킬 초기화 + 스킬 개방·강화에 쓴 별 돌려주기 (한 번만 · 스킬 포인트는 자동으로 돌아옴) */
 (function(){var tries=0,iv=setInterval(function(){tries++;if(tries>40){clearInterval(iv);return}try{var st=X&&X.st&&X.st();if(!st)return;clearInterval(iv);if(st.fx1126r)return;var cl='';try{cl=typeof CLASS_LABEL!=='undefined'?CLASS_LABEL:''}catch(_){}
- if(String(st.nm||'').replace(/\s/g,'')!=='송퇴촞'||!/초\s*6\s*B/.test(cl))return;
+ if(String(st.nm||'').replace(/\s/g,'')!=='솧툌춋'||!/초\s*6\s*B/.test(cl))return;/* 11-26 15:46: 이름 글자를 랭킹 기록 그대로 바로잡음 */
  var back=0;['hero','arch'].forEach(function(c){if(c==='arch'&&!(typeof hasArch==='function'&&hasArch()))return;inCtx(c,function(){var s=SKS();if(!s)return;var ids=Object.keys(s).filter(function(id){return tLv(id)>0&&TT()[id]}),n=0;ids.forEach(function(id){var L=tLv(id);if(TT()[id].ult)back+=450;else{n++;back+=n<=3?75:n<=6?150:225}for(var i=1;i<L;i++)back+=tUpStar(i)});for(var k in s)delete s[k]})});
  st.fx1126r=1;X.sv();setTimeout(function(){try{if(back)X.gain(back,'🌳 스킬 초기화 (선생님이 돌려줌)');X.toast('🌳 선생님이 스킬을 초기화해 주셨어요! 스킬 포인트와 별 ⭐'+back+'개를 돌려받았어요',true)}catch(e){}},3000)}catch(e){}},3000)})();
-/* 11-26 15:33 선생님: 초6 B반 랭킹 1등(송퇴촞)에게 선물 크라운 200 — 한 번만 */
+/* 11-26 15:33 선생님: 초6 B반 랭킹 1등(솧툌춋)에게 선물 크라운 200 — 한 번만 */
 (function(){var tries=0,iv=setInterval(function(){tries++;if(tries>40){clearInterval(iv);return}try{var st=X&&X.st&&X.st();if(!st)return;clearInterval(iv);if(st.gift1126c)return;var cl='';try{cl=typeof CLASS_LABEL!=='undefined'?CLASS_LABEL:''}catch(_){}
- if(String(st.nm||'').replace(/\s/g,'')!=='송퇴촞'||!/초\s*6\s*B/.test(cl))return;
+ if(String(st.nm||'').replace(/\s/g,'')!=='솧툌춋'||!/초\s*6\s*B/.test(cl))return;/* 11-26 15:46: 이름 글자를 랭킹 기록 그대로 바로잡음 */
  st.gift1126c=Date.now();st.pt=(st.pt||0)+200;X.sv();setTimeout(function(){try{X.toast('🎁 선생님의 선물! 크라운 ⭐200개를 받았어요',true);try{CH.sfx('quest')}catch(_){}}catch(e){}},3500)}catch(e){}},3000)})();
 /* 「거인의 육체」 최대 체력 % */
 var _stT=CH.stats;CH.stats=function(){var o=_stT();try{var sp=tRaw();if(sp.blk){o.fx=o.fx||{};o.fx.blk=(o.fx.blk||0)+sp.blk}/* 11-26 방패 단련: 막기 확률 */if(sp.hpP){var add=Math.round(o.hp*sp.hpP/100);o.hp+=add;if(o.hp0!=null)o.hp0+=add;if(o.cur!=null)o.cur=Math.min(o.cur,o.hp)}}catch(e){}return o};
@@ -14217,7 +14217,7 @@ var _panelBB=panel;panel=function(t,b){var p=_panelBB(t,b);try{p.classList.remov
    채우기: 출석 +1 · 필기장/앱 15분마다 +1(하루 최대 2) · 쇼츠 2편마다 +1(하루 최대 2)
           퀴즈 GOOD +1 → BETTER +1 → PERFECT +1 (올라간 단계만큼) · UNBELIEVABLE +5 */
 var APMAX=20,APBOSS=6;/* 2026-11-18 16시: APMAX는 「하루에 모을 수 있는 양」 — 가진 행동력은 끝없이 쌓임 */
-function APS(){var s=ST();if(!s.ap)s.ap={n:10,d:'',tm:0,sh:0,sc:0};var a=s.ap;var t=blToday();if(a.d!==t){a.d=t;a.tm=0;a.sh=0;a.sc=0;a.g=0}if(a.g==null)a.g=0;return a}
+function APS(){var s=ST();if(!s.ap)s.ap={n:10,d:'',tm:0,sh:0,sc:0};var a=s.ap;var t=blToday();if(a.d!==t){a.d=t;a.tm=0;a.sh=0;a.sc=0;a.g=0}if(a.g==null)a.g=0;if(a.n>APHOLD)a.n=APHOLD;/* 11-26 선생님: 가진 행동력은 최대 30 — 예전에 넘게 쌓인 것도 30으로 */return a}
 function apN(){return APS().n}
 function apChip(){[].forEach.call(document.querySelectorAll('.apchip'),function(c){var n=apN();c.innerHTML='⚡ <b>'+n+'</b>';c.classList.toggle('low',n<1);c.classList.toggle('full',false)})}
 var APHOLD=30;/* 2026-11-22 00:16 선생님: 가진 행동력은 최대 30 · 써야 다시 모임 */
