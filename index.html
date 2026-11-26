@@ -9084,6 +9084,10 @@ skillTree=function(){var m=$('vgsk');if(!m){m=document.createElement('div');m.id
  if(String(st.nm||'').replace(/\s/g,'')!=='송퇴촞'||!/초\s*6\s*B/.test(cl))return;
  var back=0;['hero','arch'].forEach(function(c){if(c==='arch'&&!(typeof hasArch==='function'&&hasArch()))return;inCtx(c,function(){var s=SKS();if(!s)return;var ids=Object.keys(s).filter(function(id){return tLv(id)>0&&TT()[id]}),n=0;ids.forEach(function(id){var L=tLv(id);if(TT()[id].ult)back+=450;else{n++;back+=n<=3?75:n<=6?150:225}for(var i=1;i<L;i++)back+=tUpStar(i)});for(var k in s)delete s[k]})});
  st.fx1126r=1;X.sv();setTimeout(function(){try{if(back)X.gain(back,'🌳 스킬 초기화 (선생님이 돌려줌)');X.toast('🌳 선생님이 스킬을 초기화해 주셨어요! 스킬 포인트와 별 ⭐'+back+'개를 돌려받았어요',true)}catch(e){}},3000)}catch(e){}},3000)})();
+/* 11-26 15:33 선생님: 초6 B반 랭킹 1등(송퇴촞)에게 선물 크라운 200 — 한 번만 */
+(function(){var tries=0,iv=setInterval(function(){tries++;if(tries>40){clearInterval(iv);return}try{var st=X&&X.st&&X.st();if(!st)return;clearInterval(iv);if(st.gift1126c)return;var cl='';try{cl=typeof CLASS_LABEL!=='undefined'?CLASS_LABEL:''}catch(_){}
+ if(String(st.nm||'').replace(/\s/g,'')!=='송퇴촞'||!/초\s*6\s*B/.test(cl))return;
+ st.gift1126c=Date.now();st.pt=(st.pt||0)+200;X.sv();setTimeout(function(){try{X.toast('🎁 선생님의 선물! 크라운 ⭐200개를 받았어요',true);try{CH.sfx('quest')}catch(_){}}catch(e){}},3500)}catch(e){}},3000)})();
 /* 「거인의 육체」 최대 체력 % */
 var _stT=CH.stats;CH.stats=function(){var o=_stT();try{var sp=tRaw();if(sp.blk){o.fx=o.fx||{};o.fx.blk=(o.fx.blk||0)+sp.blk}/* 11-26 방패 단련: 막기 확률 */if(sp.hpP){var add=Math.round(o.hp*sp.hpP/100);o.hp+=add;if(o.hp0!=null)o.hp0+=add;if(o.cur!=null)o.cur=Math.min(o.cur,o.hp)}}catch(e){}return o};
 /* 테스트용 훅 (학생 페이지에서는 __vgB가 지워짐) */
