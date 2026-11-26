@@ -14216,7 +14216,7 @@ var _panelBB=panel;panel=function(t,b){var p=_panelBB(t,b);try{p.classList.remov
    최대 20칸, 남은 칸은 다음 날로 계속 이월
    채우기: 출석 +1 · 필기장/앱 15분마다 +1(하루 최대 2) · 쇼츠 2편마다 +1(하루 최대 2)
           퀴즈 GOOD +1 → BETTER +1 → PERFECT +1 (올라간 단계만큼) · UNBELIEVABLE +5 */
-var APMAX=20,APBOSS=6;/* 2026-11-18 16시: APMAX는 「하루에 모을 수 있는 양」 — 가진 행동력은 끝없이 쌓임 */
+var APMAX=30,APBOSS=6;/* 11-26 선생님: 하루에 모을 수 있는 것도 30 *//* 2026-11-18 16시: APMAX는 「하루에 모을 수 있는 양」 — 가진 행동력은 끝없이 쌓임 */
 function APS(){var s=ST();if(!s.ap)s.ap={n:10,d:'',tm:0,sh:0,sc:0};var a=s.ap;var t=blToday();if(a.d!==t){a.d=t;a.tm=0;a.sh=0;a.sc=0;a.g=0}if(a.g==null)a.g=0;if(a.n>APHOLD)a.n=APHOLD;/* 11-26 선생님: 가진 행동력은 최대 30 — 예전에 넘게 쌓인 것도 30으로 */return a}
 function apN(){return APS().n}
 function apChip(){[].forEach.call(document.querySelectorAll('.apchip'),function(c){var n=apN();c.innerHTML='⚡ <b>'+n+'</b>';c.classList.toggle('low',n<1);c.classList.toggle('full',false)})}
